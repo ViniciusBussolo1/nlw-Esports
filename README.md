@@ -31,7 +31,7 @@ Para baixar o código-fonte do projeto em sua máquina, primeiramente terá que 
 Com o Git instalado, em seu terminal execute o seguinte comando:
 
 ```bash
-git clone https://github.com/mathrb22/nlw-esports-ignite.git
+git clone https://github.com/ViniciusBussolo1/nlw-Esports.git
 ```
 
 Para instalar as dependências e executar o projeto terá que ter instalado em sua máquina o [**Node.js**](https://nodejs.org/en/), que vem acompanhado do NPM. Com ele instalado:
