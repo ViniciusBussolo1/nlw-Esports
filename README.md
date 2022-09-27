@@ -36,7 +36,7 @@ git clone https://github.com/ViniciusBussolo1/nlw-Esports.git
 
 Para instalar as dependências e executar o projeto terá que ter instalado em sua máquina o [**Node.js**](https://nodejs.org/en/), que vem acompanhado do NPM. Com ele instalado:
 
-Navegue para as subpastas separadas para cada projeto (web/server/mobile) e rode o comando a seguir:
+Navegue para as subpastas separadas para cada projeto (web/server) e rode o comando a seguir:
 
 ```bash
 npm install
