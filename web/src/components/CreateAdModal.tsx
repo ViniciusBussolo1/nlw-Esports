@@ -1,13 +1,13 @@
 import * as Dialog from "@radix-ui/react-dialog";
 import * as Checkbox from "@radix-ui/react-checkbox";
 import * as ToggleGroup from "@radix-ui/react-toggle-group";
-import * as Select from "@radix-ui/react-select";
 
 import axios from "axios";
 
 import { Input } from "./form/Input";
 import { Check, GameController, CaretDown } from "phosphor-react";
 import { useEffect, useState, FormEvent } from "react";
+import { Toaster, toast } from "react-hot-toast";
 
 interface Game {
   id: string;
@@ -32,7 +32,19 @@ export function CreateAdModal() {
     const data = Object.fromEntries(formData);
 
     if (!data.name) {
-      return;
+      return toast.error("Informe seu Nome");
+    }
+
+    if (!data.discord) {
+      return toast.error("Informe seu Discord");
+    }
+
+    if (weekDays.length === 0) {
+      return toast.error("Selecione pelo menos um dia");
+    }
+
+    if (data.hourStart === "" || data.hourEnd === "") {
+      return toast.error("Informe um horário disponível");
     }
 
     try {
@@ -46,10 +58,10 @@ export function CreateAdModal() {
         useVoiceChannel: useVoiceChannel,
       });
 
-      alert("Anúncio criado com sucesso!");
+      toast.success("Anúncio criado com sucesso!");
     } catch (err) {
       console.log(err);
-      alert("Erro ao criar o anuncio!");
+      toast.error("Erro ao criar anúncio!");
     }
   }
 
@@ -58,6 +70,7 @@ export function CreateAdModal() {
       <Dialog.Overlay className="bg-black/60 inset-0 fixed" />
 
       <Dialog.Content className="fixed bg-[#2A2634] py-8 px-10 text-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-lg w-[480px] shadow-black/25">
+        <Toaster position="top-center" />
         <Dialog.Title className="text-3xl font-black">
           Publique um anúncio
         </Dialog.Title>
@@ -68,36 +81,24 @@ export function CreateAdModal() {
               Qual o game?
             </label>
 
-            <Select.Root>
-              <Select.Trigger
-                name="game"
-                id="game"
-                className="bg-zinc-900 py-3 px-4 rounded text-sm placeholder:text-zinc-500  flex flex-column items-center justify-between"
-              >
-                <Select.Value placeholder="Selecione o game que deseja jogar" />
-                <Select.Icon>
-                  <CaretDown />
-                </Select.Icon>
-              </Select.Trigger>
+            <select
+              name="game"
+              id="game"
+              className="bg-zinc-900 py-3 px-4 rounded text-sm placeholder:text-zinc-500 appearance-none"
+              defaultValue=""
+            >
+              <option disabled value="">
+                Selecione o game que deseja jogar
+              </option>
 
-              <Select.Portal>
-                <Select.Content>
-                  <Select.Viewport className=" bg-zinc-900">
-                    {games.map((game) => {
-                      return (
-                        <Select.Item
-                          key={game.id}
-                          value={game.id}
-                          className="hover:bg-violet-500 cursor-pointer text-white px-2 py-2 rounded"
-                        >
-                          <Select.ItemText>{game.title}</Select.ItemText>
-                        </Select.Item>
-                      );
-                    })}
-                  </Select.Viewport>
-                </Select.Content>
-              </Select.Portal>
-            </Select.Root>
+              {games.map((game) => {
+                return (
+                  <option key={game.id} value={game.id}>
+                    {game.title}
+                  </option>
+                );
+              })}
+            </select>
           </div>
 
           <div className="flex flex-col gap-2">
