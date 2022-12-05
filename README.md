@@ -57,12 +57,4 @@ npm run dev
 O app estará disponível no seu browser pelo endereço http://localhost:3000.
 
 
-## 📝 Licença
 
-<a href="https://github.com/mathrb22/nlw-esports-ignite/blob/main/LICENSE">
-    <img alt="GitHub License" src="https://img.shields.io/github/license/mathrb22/nlw-esports-ignite">
-</a>
-
-Esse projeto está sob a licença **MIT**. Veja o arquivo _**LICENSE**_ para mais detalhes.
-
----
